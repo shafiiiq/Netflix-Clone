@@ -1,0 +1,93 @@
+.Categories {
+    height: fit-content;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.wrapper {
+    height: fit-content;
+}
+
+.slider {
+    height: fit-content;
+}
+
+.poster {
+    gap: 0.5rem;
+}
+
+.poster:hover {
+    transform: scale(1.1);
+    z-index: 100;
+}
+
+.poster:hover .poster-img{
+    box-shadow: 0 0 30px rgba(0, 0, 0, 1);
+}
+
+.poster:hover .moveUp {
+    position: absolute;
+    bottom: 0.5rem;
+}
+
+.poster-lg {
+    min-width: 13rem;
+    max-width: 13rem;
+    max-height: 17rem;
+    min-height: 17rem;
+}
+
+.poster-sm {
+    min-width: 18rem;
+    max-width: 18rem;
+    max-height: 16rem;
+    min-height: 16rem;
+}
+
+.slider {
+    gap: 0.4rem;
+}
+
+.poster-img {
+    height: 87%;
+    min-height: 87%;
+}
+
+.not-available {
+    background-color: rgb(36, 34, 34);
+    height: 87%;
+    min-height: 87%;
+    max-width: 13rem;
+    min-width: 13rem;
+}
+
+@media screen and (max-width: 768px) {
+    .poster-lg {
+        min-width: 9rem;
+        max-width: 9rem;
+        max-height: 16.5rem;
+        min-height: 16.5rem;
+    }
+
+    .poster-sm {
+        min-width: 14rem;
+        max-width: 14rem;
+        max-height: 13rem;
+        min-height: 13rem;
+    }
+
+    .poster-img {
+        height: 70%;
+        min-height: 70%;
+    }
+
+    .poster:hover .moveUp {
+        bottom: 1.5rem;
+    }
+
+    .Categories .p-inline-2 {
+        padding-inline: 1rem;
+    }
+}

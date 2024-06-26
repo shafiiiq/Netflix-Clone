@@ -1,0 +1,12 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color:#181818;
+  height: 100vh;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

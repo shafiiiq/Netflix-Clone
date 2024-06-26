@@ -1,0 +1,46 @@
+.blured-banner {
+    height: 25rem;
+}
+
+.blured-banner::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.47335430754332986) 0%, rgba(0, 0, 0, 0.688) 100%);
+    filter: blur(10px);
+}
+
+.blured-banner img {
+    filter: blur(10px);
+}
+
+.title-promo {
+    font-size: 2.4rem;
+}
+
+.promo-p {
+    max-width: 46rem;
+} 
+
+.join {
+    height: 3.5rem;
+    background-color: red;
+    width: 10rem;
+}
+
+.join:hover {
+    background-color: rgb(185, 17, 17);
+}
+
+@media screen and (max-width: 768px) {
+    .title-promo {
+        font-size: 1.5rem;
+    }
+
+    .promo-p {
+        max-width: 26rem;
+        font-size: 14px;
+    } 
+}

@@ -1,0 +1,16 @@
+.Trailer {
+    background-color: rgba(0, 0, 0, 0.816);
+    height: 100vh;
+}
+
+.trailer-container {
+    width: 920px;
+    height: 520px;
+}
+
+@media screen and (max-width: 768px){
+    .trailer-container {
+        width: 450px;
+        height: 300px;
+    }
+}
