@@ -6,7 +6,7 @@ import Categories from '../Categories/Categories'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from '../../axios/axios'
-import { apiKey, imgUrl } from '../../Constants/constants'
+import { apiKey, authToken, imgUrl } from '../../Constants/constants'
 import Trailer from '../Trailer/Trailer'
 import Sidebar from '../Sidebar/Sidebar'
 
@@ -15,9 +15,15 @@ function Home() {
   // axios for getting the all treding movies for put a single random movie in banner 
   const [trending, setTrending] = useState([])
   useEffect(() => {
-    axios.get(`trending/all/week?api_key=${apiKey}&language=en`).then((respose) => [
-      setTrending(respose.data.results[7])
-    ])
+    fetch(`https://api.themoviedb.org/3/trending/all/week?language=en`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        setTrending(data.results[7])
+      })
   }, [])
   // end of that -----------
 
@@ -26,13 +32,22 @@ function Home() {
   // axios for geting all traiers from youtube with movie id that present in the banner using youtube react library 
   const [trailerId, setTrailerId] = useState('')
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/movie/${trending.id}/videos?language=en-US&api_key=${apiKey}`).then((respose) => {
-      setTrailerId(respose.data.results[0].key)
-    }).catch(err => {
-      console.log(err);
-      alert("Network Err on banner trailer " + err)
-    })
-  }, [])
+    if (trending.id) {
+      fetch(`https://api.themoviedb.org/3/movie/${trending.id}/videos?language=en-US`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          setTrailerId(data.results[0].key)
+        })
+        .catch(err => {
+          console.log(err);
+          alert("Network Err on banner trailer " + err)
+        })
+    }
+  }, [trending.id])
   // end of that  ------ 
 
   // ---------------------------------------------------------------------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './Categories.css'
 import { useState } from 'react';
-import { apiKey, baseUrl, imgUrl } from '../../Constants/constants';
+import { apiKey, authToken, baseUrl, imgUrl } from '../../Constants/constants';
 import axios from '../../axios/axios'
 import Trailer from '../Trailer/Trailer';
 
@@ -10,11 +10,15 @@ function Categories(props) {
     // used to get the movies with given genres in props and set all movies into movies useState 
     const [movies, setmovies] = useState([])
     useEffect(() => {
-        axios.get(`/discover/movie?api_key=${apiKey}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${props.movieKey}
-        `).then((response) => {
-            setmovies(response.data.results)
-            // console.log(response.data.results)
+        fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${props.movieKey}`, {
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            }
         })
+            .then(response => response.json())
+            .then(data => {
+                setmovies(data.results)
+            })
     }, [props.movieKey])
     // end of that movies fetching 
 
@@ -23,10 +27,16 @@ function Categories(props) {
 
     function activeTrailer(id) {
         setTrailer(true)
-        axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US&api_key=${apiKey}`).then((response) => {
-            console.log(response.data.results[0]);
-            setTrailerId(response.data.results[0].key)
+        fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, {
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            }
         })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.results[0]);
+                setTrailerId(data.results[0].key)
+            })
     }
 
     return (
