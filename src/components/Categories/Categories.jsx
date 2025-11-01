@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import './Categories.css'
 import { useState } from 'react';
-import { apiKey, authToken, baseUrl, imgUrl } from '../../Constants/constants';
-import axios from '../../axios/axios'
+import { authToken, imgUrl } from '../../Constants/constants';
 import Trailer from '../Trailer/Trailer';
 
 function Categories(props) {
@@ -61,7 +60,7 @@ function Categories(props) {
                             movies.map((movie) =>
                                 <div onClick={() => activeTrailer(movie.id)} className={`poster flex a-center flex-col relative pointer ease-3 ${props.large ? 'poster-lg' : 'poster-sm'}`}>
                                     {movie.backdrop_path ? (
-                                        <img src={`${imgUrl + movie.backdrop_path}`} className="poster-img inset w-full cover" />
+                                        <img src={`${imgUrl + movie.backdrop_path}`} className="poster-img inset w-full cover" alt={movie.title || ""} />
                                     ) : (
                                         <p className='not-available flex j-center a-center font-xl t-center bold-600'>No Preview Available</p>
                                     )}
