@@ -1,4 +1,5 @@
-export const baseUrl = process.env.baseUrl
-export const authToken = process.env.authToken
-export const apiKey = process.env.apiKey
-export const imgUrl = process.env.imgUrl
+export const baseUrl = process.env.REACT_APP_BASE_URL;
+export const authToken = process.env.REACT_APP_AUTH_TOKEN;
+export const apiKey = process.env.REACT_APP_API_KEY;
+export const imgUrl = process.env.REACT_APP_IMG_URL;
+
